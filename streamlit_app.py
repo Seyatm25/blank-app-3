@@ -488,4 +488,425 @@ elif pilihan_halaman == "📘 BAB I. HIDROKARBON":
         
     elif st.session_state.sub_bab_i == "🧪 Mini-Lab: Hidrokarbon":
         st.markdown("#### 🧪 Laboratorium Mini: Identifikasi Hidrokarbon")
-        st
+        st.write("Silakan pilih sampel hidrokarbon dan jenis uji untuk melihat hasil analisanya secara visual.")
+        
+        c1, c2 = st.columns(2)
+        with c1:
+            sampel_h = st.selectbox("Pilih Sampel Hidrokarbon:", ["Alkana (Heksana)", "Alkena (Sikloheksena)", "Aromatik (Benzena)"])
+            uji_h = st.selectbox("Pilih Jenis Uji Reaksi:", ["Uji Adisi Iodium (Gelap/Tanpa UV)", "Uji Oksidasi Baeyer (KMnO4)", "Uji Bakar Kualitatif"])
+        
+        with c2:
+            st.write("**Visualisasi Hasil Uji:**")
+            if sampel_h == "Alkana (Heksana)":
+                if uji_h == "Uji Adisi Iodium (Gelap/Tanpa UV)":
+                    st.markdown(render_tube("65%", "#9333ea", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** (-) Negatif. Warna ungu iodium tetap bertahan karena alkana jenuh tidak dapat diadisi tanpa bantuan radiasi sinar UV.")
+                elif uji_h == "Uji Oksidasi Baeyer (KMnO4)":
+                    st.markdown(render_tube("65%", "#a855f7", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** (-) Negatif. Larutan tetap berwarna ungu murni. Alkana bersifat parafin (inert) terhadap oksidator.")
+                else:
+                    st.markdown("<div style='background:#f8fafc; padding:20px; border-radius:10px; border:1px solid #cbd5e1; text-align:center;'>🔥 Nyala api bersih, sedikit sekali jelaga.</div>", unsafe_allow_html=True)
+            
+            elif sampel_h == "Alkena (Sikloheksena)":
+                if uji_h == "Uji Adisi Iodium (Gelap/Tanpa UV)":
+                    st.markdown(render_tube("65%", "#f8fafc", "none"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Positif. Warna ungu larutan iodium hilang seketika menjadi bening karena terjadi adisi spontan pada ikatan rangkap.")
+                elif uji_h == "Uji Oksidasi Baeyer (KMnO4)":
+                    st.markdown(render_tube("65%", "#78350f", "precipitate", warna_endapan="#451a03"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Positif. Warna ungu KMnO4 menghilang dan terbentuk endapan cokelat tua dari MnO2 hasil reduksi.")
+                else:
+                    st.markdown("<div style='background:#f8fafc; padding:20px; border-radius:10px; border:1px solid #cbd5e1; text-align:center;'>🔥 Nyala api kuning sedang, disertai sedikit jelaga tipis.</div>", unsafe_allow_html=True)
+            
+            elif sampel_h == "Aromatik (Benzena)":
+                if uji_h == "Uji Adisi Iodium (Gelap/Tanpa UV)":
+                    st.markdown(render_tube("65%", "#9333ea", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** (-) Negatif. Cincin aromatik terkonjugasi sangat stabil, menolak pemutusan rantai melalui reaksi adisi halogen biasa.")
+                elif uji_h == "Uji Oksidasi Baeyer (KMnO4)":
+                    st.markdown(render_tube("65%", "#a855f7", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** (-) Negatif. Larutan tetap berwarna ungu. Resonansi benzena melindunginya dari serangan oksidator biasa.")
+                else:
+                    st.markdown("<div style='background:#1e293b; color:white; padding:20px; border-radius:10px; text-align:center;'>⚫ 🔥 Nyala api berminyak disertai kepulan jelaga hitam pekat (Kadar C tinggi).</div>", unsafe_allow_html=True)
+
+elif pilihan_halaman == "📙 BAB II. ALKOHOL, ETER, DAN FENOL":
+    st.title("📙 BAB II. ALKOHOL, ETER, DAN FENOL")
+    st.write("---")
+    
+    st.write("**Pilih Sub-Bab Materi:**")
+    btn_col1, btn_col2, btn_col3, btn_col4, _ = st.columns([1.2, 1.2, 1.2, 1.2, 1])
+    with btn_col1:
+        if st.button("A. Sifat Fisika & Klasifikasi", use_container_width=True):
+            st.session_state.sub_bab_ii = "A. Sifat Fisika & Klasifikasi"
+    with btn_col2:
+        if st.button("B. Reaksi Alkohol & Eter", use_container_width=True):
+            st.session_state.sub_bab_ii = "B. Reaksi Alkohol & Eter"
+    with btn_col3:
+        if st.button("C. Reaksi Kimia Fenol", use_container_width=True):
+            st.session_state.sub_bab_ii = "C. Reaksi Kimia Fenol"
+    with btn_col4:
+        if st.button("🧪 Mini-Lab: Alkohol-Fenol", use_container_width=True):
+            st.session_state.sub_bab_ii = "🧪 Mini-Lab: Alkohol-Fenol"
+    st.write("---")
+    
+    if st.session_state.sub_bab_ii == "A. Sifat Fisika & Klasifikasi":
+        st.markdown("""
+        #### **A. Sifat Fisika & Klasifikasi**
+        * **Alkohol ($R - OH$):** Turunan alkana di mana satu atau lebih atom H digantikan oleh gugus hidroksil ($-OH$). Alkohol diklasifikasikan menjadi alkohol primer ($1^\circ$), sekunder ($2^\circ$), dan tersier ($3^\circ$) berdasarkan jenis atom C yang mengikat gugus $-OH$. Alkohol suhu rendah mudah larut dalam air karena sanggup membentuk ikatan hidrogen dengan molekul air. Kelarutan berkurang seiring bertambah panjangnya rantai karbon, namun meningkat pada struktur yang bercabang banyak.
+        * **Eter ($R^1 - O - R^2$):** Isomer fungsional dari alkohol. Titik didih eter jauh lebih rendah dibandingkan alkohol isomernya karena tidak memiliki ikatan hidrogen antar-sesama molekul eter. Kelarutannya dalam air mirip dengan alkohol karena oksigen pada eter masih bisa menerima ikatan hidrogen dari air.
+        * **Fenol ($C_6H_5OH$):** Senyawa hidrokarbon aromatik yang mengikat gugus fungsi $-OH$ langsung pada cincin benzena. Berupa padatan/hablur pada suhu kamar, sedikit larut dalam air, dan larutannya bersifat asam lemah karena ion fenoksida yang terbentuk distabilkan oleh resonansi.
+        """)
+        
+    elif st.session_state.sub_bab_ii == "B. Reaksi Alkohol & Eter":
+        st.markdown("""
+        #### **B. Persamaan Reaksi Kimia Alkohol & Eter**
+        
+        **1. Pereaksi Lucas (Substitusi Gugus $-OH$ oleh Cl)**
+        * Menggunakan campuran $HCl$ pekat dan katalis $ZnCl_2$ untuk membedakan jenis alkohol berdasarkan kecepatan reaksinya.
+        * Alkohol $3^\circ$: Bereaksi seketika (larutan langsung keruh/terbentuk dua lapisan terpisah).
+        * Alkohol $2^\circ$: Bereaksi dalam waktu 5–10 menit dengan sedikit pemanasan.
+        * Alkohol $1^\circ$: Tidak bereaksi pada suhu kamar.
+        """)
+        st.latex(r"\text{R}_3\text{C-OH} + \text{HCl} \xrightarrow{\text{ZnCl}_2} \text{R}_3\text{C-Cl}\downarrow \text{ (Keruh)} + \text{H}_2\text{O}")
+        
+        st.markdown("""
+        **2. Pereaksi Jones (Oksidasi Alkohol)**
+        * Menggunakan kromium trioksida ($CrO_3$) dalam asam sulfat pekat. Uji positif ditandai dengan perubahan warna pereaksi dari jingga menjadi hijau.
+        * Alkohol $1^\circ$ dioksidasi menjadi Aldehida, lalu berlanjut menjadi Asam Karboksilat.
+        * Alkohol $2^\circ$ dioksidasi menjadi Keton.
+        * Alkohol $3^\circ$ tidak dapat dioksidasi (warna tetap jingga).
+        """)
+        st.latex(r"\text{R-CH}_2\text{-OH} \xrightarrow{\text{CrO}_3/\text{H}_2\text{SO}_4} \text{R-COOH [Jingga } \rightarrow \text{ Hijau]}")
+        
+        st.markdown("""
+        **3. Uji Iodoform**
+        * Khusus untuk alkohol yang memiliki gugus metil alfa $(CH_3CH(OH))$, seperti etanol atau 2-propanol. Bereaksi dengan $I_2$ dalam suasana basa ($NaOH$) membentuk endapan kuning kristal iodoform ($CHI_3$) yang berbau khas.
+        """)
+        st.latex(r"\text{R-CH(OH)-CH}_3 + 4\text{I}_2 + 6\text{NaOH} \rightarrow \text{R-COONa} + \text{CHI}_3\downarrow + 5\text{NaI} + 5\text{H}_2\text{O}")
+        
+    elif st.session_state.sub_bab_ii == "C. Reaksi Kimia Fenol":
+        st.markdown("""
+        #### **C. Persamaan Reaksi Kimia Fenol**
+        
+        **1. Reaksi dengan Basa Kuat ($NaOH$)**
+        * Membentuk garam natrium fenoksida yang larut dalam air (menunjukkan sifat asam lemah fenol).
+        """)
+        st.latex(r"\text{C}_6\text{H}_5\text{OH} + \text{NaOH} \rightarrow \text{C}_6\text{H}_5\text{ONa} + \text{H}_2\text{O}")
+        
+        st.markdown("""
+        **2. Uji Besi(III) Klorida ($FeCl_3$)**
+        * Ion fenoksida membentuk senyawa kompleks koordinasi dengan besi(III) yang menghasilkan warna ungu tua/kehitaman yang khas.
+        """)
+        st.latex(r"6\text{C}_6\text{H}_5\text{OH} + \text{FeCl}_3 \rightarrow [\text{Fe(OC}_6\text{H}_5)_6]^{3-} + 3\text{H}^+ + 3\text{Cl}^-")
+
+    elif st.session_state.sub_bab_ii == "🧪 Mini-Lab: Alkohol-Fenol":
+        st.markdown("#### 🧪 Laboratorium Mini: Alkohol & Fenol")
+        c1, c2 = st.columns(2)
+        with c1:
+            sampel_a = st.selectbox("Pilih Sampel Gugus Fungsi:", ["Alkohol Primer", "Alkohol Sekunder", "Alkohol Tersier", "Fenol"])
+            uji_a = st.selectbox("Pilih Jenis Uji Reaksi:", ["Uji Kompleks CAN", "Pereaksi Lucas", "Uji FeCl3"])
+            
+        with c2:
+            st.write("**Visualisasi Hasil Uji:**")
+            if sampel_a == "Fenol":
+                if uji_a == "Uji FeCl3":
+                    st.markdown(render_tube("65%", "#4c1d95", "none"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Positif Ungu Kompleks. Ion Besi(III) mengikat gugus fenoksida membentuk kompleks ungu pekat.")
+                else:
+                    st.markdown(render_tube("65%", "#f97316", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** Tidak menghasilkan reaksi khas/Negeratif.")
+            else:
+                if uji_a == "Uji Kompleks CAN":
+                    st.markdown(render_tube("65%", "#ef4444", "none"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Positif Kompleks Merah Ceri untuk seluruh jenis alkohol bebas.")
+                elif uji_a == "Pereaksi Lucas":
+                    if sampel_a == "Alkohol Tersier":
+                        st.markdown(render_tube("65%", "#cbd5e1", "cloudy"), unsafe_allow_html=True)
+                        st.success("✅ **Hasil:** (+) Keruh Seketika. Karbokation tersier stabil memicu pembentukan emulsi alkil klorida secara instan.")
+                    elif sampel_a == "Alkohol Sekunder":
+                        st.markdown(render_tube("65%", "#e2e8f0", "cloudy"), unsafe_allow_html=True)
+                        st.info("ℹ️ **Hasil:** (+) Keruh lambat (5-10 menit), membutuhkan proses pemanasan.")
+                    else:
+                        st.markdown(render_tube("65%", "#f8fafc", "none"), unsafe_allow_html=True)
+                        st.warning("⚠️ **Hasil:** (-) Tetap Bening. Alkohol primer sangat tidak reaktif terhadap uji Lucas pada suhu kamar.")
+                else:
+                    st.markdown(render_tube("65%", "#fecdd3", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** (-) Negatif. Alkohol biasa tidak memicu warna ungu dengan FeCl3.")
+
+elif pilihan_halaman == "📗 BAB III. ALDEHID DAN KETON":
+    st.title("📗 BAB III. ALDEHID DAN KETON")
+    st.write("---")
+    
+    st.write("**Pilih Sub-Bab Materi:**")
+    btn_col1, btn_col2, btn_col3, btn_col4, _ = st.columns([1, 1.2, 1.5, 1.2, 1])
+    with btn_col1:
+        if st.button("A. Sifat Fisika", use_container_width=True):
+            st.session_state.sub_bab_iii = "A. Sifat Fisika"
+    with btn_col2:
+        if st.button("B. Reaksi Adisi Karbonil", use_container_width=True):
+            st.session_state.sub_bab_iii = "B. Reaksi Adisi Karbonil"
+    with btn_col3:
+        if st.button("C. Reaksi Diferensiasi (Uji Reduksi)", use_container_width=True):
+            st.session_state.sub_bab_iii = "C. Reaksi Diferensiasi (Uji Reduksi)"
+    with btn_col4:
+        if st.button("🧪 Mini-Lab: Karbonil", use_container_width=True):
+            st.session_state.sub_bab_iii = "🧪 Mini-Lab: Karbonil"
+    st.write("---")
+    
+    if st.session_state.sub_bab_iii == "A. Sifat Fisika":
+        st.markdown("""
+        #### **A. Sifat Fisika**
+        Aldehida (${R-CHO}$) dan keton (${R-CO-R}'$) adalah senyawa organik isomer fungsional yang sama-sama memiliki gugus fungsi karbonil (${C}={O}$). Perbedaan utamanya terletak pada atom C karbonil aldehida yang mengikat minimal satu atom hidrogen, sedangkan pada keton terikat pada dua gugus alkil/aril.
+
+        Metanal (formaldehida) merupakan suku paling rendah yang berwujud gas pada suhu kamar dengan bau menyengat. Suku-suku aldehida rendah lainnya berupa cairan dengan bau yang semakin harum (seperti aroma buah-buahan) seiring bertambah panjangnya rantai C. Keton suku rendah (seperti aseton atau propanon) berupa cairan encer, mudah larut dalam air, mudah menguap, dan memiliki aroma yang segar.
+        """)
+        
+    elif st.session_state.sub_bab_iii == "B. Reaksi Adisi Karbonil":
+        st.markdown("""
+        #### **B. Reaksi Adisi Karbonil**
+        
+        **1. Adisi Natrium Bisulit (${NaHSO}_3$):**
+        * Reaksi adisi nukleofilik pada gugus karbonil aldehida atau metil keton menghasilkan senyawa aduk berupa kristal padat berwarna putih yang sukar larut.
+        """)
+        st.latex(r"\text{R-CHO} + \text{NaHSO}_3 \rightarrow \text{R-CH(OH)-SO}_3\text{Na}")
+        
+        st.markdown("""
+        **2. Pembentukan Hemiasetal dan Asetal:**
+        * Reaksi reversibel gugus karbonil dengan alkohol dalam suasana asam gas $HCl$.
+        """)
+        st.latex(r"\text{R-CHO} + \text{R'OH} \xrightarrow{\text{HCl}} \text{R-CH(OH)(OR')}")
+        
+    elif st.session_state.sub_bab_iii == "C. Reaksi Diferensiasi (Uji Reduksi)":
+        st.markdown("""
+        #### **C. Reaksi Diferensiasi (Uji Daya Reduksi Aldehida)**
+        Aldehida bertindak sebagai reduktor kuat karena keberadaan atom hidrogen pada karbon karbonilnya, sedangkan keton tidak memiliki daya pereduksi dan memberikan hasil negatif pada uji-uji berikut:
+        
+        **1. Uji Tollens (Cermin Perak):**
+        * Aldehida mereduksi ion kompleks perak beramoniak $[\text{Ag(NH}_3)_2]^+$ menjadi logam perak murni yang menempel di dinding tabung reaksi membentuk cermin perak.
+        """)
+        st.latex(r"\text{R-CHO} + 2[\text{Ag(NH}_3)_2]^+ + 3\text{OH}^- \rightarrow \text{R-COO}^- + 2\text{Ag}\downarrow + 4\text{NH}_3 + 2\text{H}_2\text{O}")
+        
+        st.markdown("""
+        **2. Uji Fehling:**
+        * Aldehida mereduksi ion ${Cu}^{2+}$ yang berada dalam bentuk kompleks tartrat basa, menghasilkan endapan merah bata kupro oksida (${Cu}_2{O}$).
+        """)
+        st.latex(r"\text{R-CHO} + 2\text{Cu}^{2+} + 5\text{OH}^- \rightarrow \text{R-COO}^- + \text{Cu}_2\text{O}\downarrow + 3\text{H}_2\text{O}")
+
+    elif st.session_state.sub_bab_iii == "🧪 Mini-Lab: Karbonil":
+        st.markdown("#### 🧪 Laboratorium Mini: Identifikasi Gugus Karbonil")
+        c1, c2 = st.columns(2)
+        with c1:
+            sampel_k = st.selectbox("Pilih Senyawa Karbonil:", ["Aldehida (Alkanal)", "Keton (Alkanon)"])
+            uji_k = st.selectbox("Pilih Reaksi Diferensiasi:", ["Uji Reduksi Fehling", "Uji Spesifik Schiff", "Uji Bisulfit"])
+            
+        with c2:
+            st.write("**Visualisasi Hasil Uji:**")
+            if sampel_k == "Aldehida (Alkanal)":
+                if uji_k == "Uji Reduksi Fehling":
+                    st.markdown(render_tube("65%", "#3b82f6", "precipitate", warna_endapan="#b91c1c"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Terbentuk Endapan Merah Bata ($Cu_2O$) akibat daya reduksi gugus aldehida.")
+                elif uji_k == "Uji Spesifik Schiff":
+                    st.markdown(render_tube("65%", "#d946ef", "none"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Terbentuk Kompleks Warna Magenta/Ungu pekat khas kualitatif alkanal.")
+                else:
+                    st.markdown(render_tube("65%", "#cbd5e1", "precipitate", warna_endapan="#ffffff"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Terbentuk endapan kristal putih adisi bisulfit.")
+            else:
+                if uji_k == "Uji Reduksi Fehling":
+                    st.markdown(render_tube("65%", "#3b82f6", "none"), unsafe_allow_html=True)
+                    st.error("❌ **Hasil:** (-) Tetap Biru. Keton tidak memilki atom hidrogen bebas pada C karbonil sehingga tidak dapat dioksidasi.")
+                elif uji_k == "Uji Spesifik Schiff":
+                    st.markdown(render_tube("65%", "#f8fafc", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** (-) Hasil negatif (Bening), larutan tidak berubah warna.")
+                else:
+                    st.markdown(render_tube("65%", "#cbd5e1", "precipitate", warna_endapan="#ffffff"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Terbentuk endapan kristal putih (Khusus untuk metil keton / keton suku rendah seperti aseton).")
+
+elif pilihan_halaman == "📕 BAB IV. ASAM KARBOKSILAT DAN DERIVATNYA":
+    st.title("📕 BAB IV. ASAM KARBOKSILAT DAN DERIVATNYA")
+    st.write("---")
+    
+    st.write("**Pilih Sub-Bab Materi:**")
+    btn_col1, btn_col2, btn_col3, btn_col4, _ = st.columns([1, 1.5, 1.5, 1.2, 1])
+    with btn_col1:
+        if st.button("A. Sifat Fisika", use_container_width=True):
+            st.session_state.sub_bab_iv = "A. Sifat Fisika"
+    with btn_col2:
+        if st.button("B. Reaksi Kimia Asam Karboksilat", use_container_width=True):
+            st.session_state.sub_bab_iv = "B. Reaksi Kimia Asam Karboksilat"
+    with btn_col3:
+        if st.button("C. Identifikasi Derivat (Ester)", use_container_width=True):
+            st.session_state.sub_bab_iv = "C. Identifikasi Derivat (Ester)"
+    with btn_col4:
+        if st.button("🧪 Mini-Lab: Karboksilat", use_container_width=True):
+            st.session_state.sub_bab_iv = "🧪 Mini-Lab: Karboksilat"
+    st.write("---")
+    
+    if st.session_state.sub_bab_iv == "A. Sifat Fisika":
+        st.markdown("""
+        #### **A. Sifat Fisika**
+        Asam karboksilat memiliki gugus fungsi karboksil ($-{COOH}$), senyawa gabungan dari gugus karbonil dan hidroksil. Derivat atau turunan asam karboksilat (seperti ester, halida asam/asil halida, anhidrida asam, dan amida) terbentuk ketika gugus $-{OH}$ pada karboksilat digantikan oleh nukleofil lain.
+
+        Asam karboksilat rantai pendek ($C_1 - C_4$) memiliki kelarutan yang sangat baik di dalam air karena kemampuan gugus $-{COOH}$ membentuk ikatan hidrogen antarmolekul yang kuat membentuk dimer. Kelarutan senyawa akan semakin menurun seiring dengan bertambah tingginya bobot molekul (rantai alkil nonpolar semakin panjang). Titik didih asam karboksilat relatif tinggi dibandingkan senyawa organik lain dengan berat molekul setara.
+        """)
+        
+    elif st.session_state.sub_bab_iv == "B. Reaksi Kimia Asam Karboksilat":
+        st.markdown("""
+        #### **B. Persamaan Reaksi Kimia Asam Karboksilat**
+        
+        **1. Reaksi dengan Basa Kuat (${NaOH}$):**
+        * Menghasilkan garam karboksilat yang larut dalam air.
+        """)
+        st.latex(r"\text{R-COOH} + \text{NaOH} \rightarrow \text{R-COONa} + \text{H}_2\text{O}")
+        
+        st.markdown("""
+        **2. Reaksi dengan Basa Lemah (${NaHCO}_3$):**
+        * Asam karboksilat tergolong cukup asam untuk mendeprotonasi natrium bikarbonat, menghasilkan garam, air, dan pelepasan gas karbon dioksida secara cepat (effervescence). Reaksi ini membedakan asam karboksilat dengan fenol.
+        """)
+        st.latex(r"\text{R-COOH} + \text{NaHCO}_3 \rightarrow \text{R-COONa} + \text{H}_2\text{O} + \text{CO}_2\uparrow")
+        
+    elif st.session_state.sub_bab_iv == "C. Identifikasi Derivat (Ester)":
+        st.markdown("""
+        #### **C. Persamaan Reaksi Identifikasi Derivat Asam Karboksilat (Uji Asam Hidroksamat)**
+        Derivat asam karboksilat (contohnya ester) terlebih dahulu dikondensasikan dengan hidroksilamin (${NH}_2{OH}$) menghasilkan senyawa asam hidroksamat. Sifat kimia khas dari asam hidroksamat adalah kemampuannya mengkelat logam besi membentuk senyawa kompleks besi(III) hidroksamat yang menghasilkan warna ungu intens saat ditambahkan larutan ${FeCl}_3$.
+        """)
+        st.latex(r"\text{R-COOR'} + \text{NH}_2\text{OH} \rightarrow \text{R-CONH-OH} + \text{R'-OH}")
+
+    elif st.session_state.sub_bab_iv == "🧪 Mini-Lab: Karboksilat":
+        st.markdown("#### 🧪 Laboratorium Mini: Asam Karboksilat & Ester")
+        c1, c2 = st.columns(2)
+        with c1:
+            sampel_ak = st.selectbox("Pilih Senyawa Sampel:", ["Asam Karboksilat", "Ester (Alkil Alkanoat)"])
+            uji_ak = st.selectbox("Pilih Reaksi Identifikasi Khas:", ["Uji Karbonat (NaHCO3) + Air Barit", "Uji Asam Hidroksamat (FeCl3)"])
+            
+        with c2:
+            st.write("**Visualisasi Hasil Uji:**")
+            if sampel_ak == "Asam Karboksilat":
+                if uji_ak == "Uji Karbonat (NaHCO3) + Air Barit":
+                    st.markdown(render_tube("65%", "#f8fafc", "bubbles"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Terbentuk gelembung gas $CO_2$ secara cepat yang mengeruhkan larutan indikator air barit.")
+                else:
+                    st.markdown(render_tube("65%", "#f8fafc", "none"), unsafe_allow_html=True)
+                    st.warning("⚠️ **Hasil:** (-) Negatif. Asam karboksilat bebas tidak bereaksi membentuk kompleks warna hidroksamat.")
+            else:
+                if uji_ak == "Uji Karbonat (NaHCO3) + Air Barit":
+                    st.markdown(render_tube("65%", "#f8fafc", "none"), unsafe_allow_html=True)
+                    st.error("❌ **Hasil:** (-) Negatif. Ester tidak memiliki hidrogen asam karboksil sehingga gagal mengurai bikarbonat.")
+                else:
+                    st.markdown(render_tube("65%", "#c026d3", "none"), unsafe_allow_html=True)
+                    st.success("✅ **Hasil:** (+) Positif Merah Violet/Ungu. Ester berhasil diubah menjadi asam hidroksamat yang mengkelat ion $Fe^{3+}$.")
+
+# ==============================================================================
+# 6. POST TEST CERDAS (TERUPDATE DENGAN NAMA PEREAKSI SPESIFIK)
+# ==============================================================================
+elif pilihan_halaman == "🔬 POST TEST":
+    st.title("🔀 Asisten Identifikasi Cerdas (Step-by-Step)")
+    st.write("Sistem ini mensimulasikan penelusuran Identifikasi Kualitatif langkah demi langkah. Tekan tombol Lanjut untuk melanjutkan ke tahap reaksi berikutnya berdasarkan spesifikasi pereaksi.")
+
+    if not st.session_state.test_started:
+        st.divider()
+        senyawa = st.selectbox("Pilih Golongan Senyawa yang Akan Diuji (Sebagai *Blind Sample*):", ["-- Pilih Senyawa --"] + list(flowchart_paths.keys()))
+        if st.button("Mulai Identifikasi 🚀", type="primary"):
+            if senyawa == "-- Pilih Senyawa --":
+                st.warning("⚠️ Harap pilih komponen senyawa terlebih dahulu!")
+            else:
+                st.session_state.test_started = True
+                st.session_state.senyawa_uji = senyawa
+                st.session_state.current_step = 0
+                st.session_state.log_history = []
+                st.session_state.trigger_animation = True
+                force_rerun()
+
+    else:
+        st.write("---")
+        senyawa = st.session_state.senyawa_uji
+        urutan = flowchart_paths[senyawa]
+
+        col_visual, col_log = st.columns([1, 2.5])
+        
+        with col_visual:
+            st.markdown("<h4 style='text-align: center;'>Visual Lab</h4>", unsafe_allow_html=True)
+            
+            reagent_tag_placeholder = st.empty()
+            tube_placeholder = st.empty() 
+            status_placeholder = st.empty()
+            
+            st.write("")
+            if st.button("⏹️ Stop & Pilih Reagen/Sampel Ulang", use_container_width=True, type="secondary"):
+                st.session_state.test_started = False
+                st.session_state.current_step = 0
+                st.session_state.log_history = []
+                st.session_state.trigger_animation = False
+                force_rerun()
+            
+        with col_log:
+            st.markdown("#### 📑 Logbook & Analisis Teoritis")
+            log_container = st.container()
+
+        with log_container:
+            for log in st.session_state.log_history:
+                if "(+)" in log["hasil"]:
+                    st.success(f"**Tahap {log['step']}: {log['pereaksi']}** ➔ **{log['hasil']}**")
+                    st.latex(log['reaksi'])
+                    st.write(f"**Pembahasan:** {log['alasan']}")
+                else:
+                    st.error(f"**Tahap {log['step']}: {log['pereaksi']}** ➔ **{log['hasil']}**")
+                    st.latex(log['reaksi'])
+                    st.write(f"**Pembahasan:** {log['alasan']}")
+
+        if st.session_state.trigger_animation and st.session_state.current_step < len(urutan):
+            pereaksi = urutan[st.session_state.current_step]
+            
+            reagent_tag_placeholder.markdown(f"<div class='reagent-tag'>🧪 Pereaksi: {pereaksi}</div>", unsafe_allow_html=True)
+            tube_placeholder.markdown(render_tube("30%", "#f1f5f9", "none"), unsafe_allow_html=True)
+            status_placeholder.markdown(f"<div style='text-align:center;'><em>Menyiapkan sampel untuk analisis...</em></div>", unsafe_allow_html=True)
+            time.sleep(1.0)
+            
+            warna_reagen = reagen_colors[pereaksi]
+            tube_placeholder.markdown(render_tube("65%", warna_reagen, "none"), unsafe_allow_html=True)
+            status_placeholder.markdown(f"<div style='text-align:center;'><em>Mereaksikan komponen senyawa...</em></div>", unsafe_allow_html=True)
+            time.sleep(1.5)
+            
+            res = database_reaksi[senyawa][pereaksi]
+            w_endapan = res.get("warna_endapan", None)
+            tube_placeholder.markdown(render_tube("65%", res["warna_akhir"], res["efek"], warna_endapan=w_endapan), unsafe_allow_html=True)
+            status_placeholder.markdown("<div style='text-align:center; font-weight:bold;'>Mengamati pengendapan & perubahan warna...</div>", unsafe_allow_html=True)
+            time.sleep(1.2)
+            
+            st.session_state.log_history.append({
+                "step": st.session_state.current_step + 1,
+                "pereaksi": pereaksi,
+                "hasil": res["hasil"],
+                "reaksi": res["reaksi"],
+                "alasan": res["alasan"]
+            })
+            
+            st.session_state.current_step += 1
+            st.session_state.trigger_animation = False
+            force_rerun()
+
+        elif not st.session_state.trigger_animation:
+            if st.session_state.current_step > 0:
+                last_pereaksi = urutan[st.session_state.current_step - 1]
+                reagent_tag_placeholder.markdown(f"<div class='reagent-tag'>🧪 Pereaksi: {last_pereaksi}</div>", unsafe_allow_html=True)
+                res = database_reaksi[senyawa][last_pereaksi]
+                w_endapan = res.get("warna_endapan", None)
+                tube_placeholder.markdown(render_tube("65%", res["warna_akhir"], res["efek"], warna_endapan=w_endapan), unsafe_allow_html=True)
+            
+            if st.session_state.current_step < len(urutan):
+                next_pereaksi = urutan[st.session_state.current_step]
+                status_placeholder.markdown("<div style='text-align:center; color:#475569;'>Menunggu konfirmasi data...</div>", unsafe_allow_html=True)
+                
+                with col_visual:
+                    if st.button(f"Lanjutkan ke {next_pereaksi} ⏭️", use_container_width=True, type="primary"):
+                        st.session_state.trigger_animation = True
+                        force_rerun()
+                        
+            else:
+                reagent_tag_placeholder.markdown("<div class='reagent-tag' style='background-color:#d1fae5; color:#065f46;'>🏁 Identifikasi Selesai</div>", unsafe_allow_html=True)
+                status_placeholder.markdown("<div style='text-align:center; font-weight:bold; color:#10b981;'>Rangkaian uji selesai!</div>", unsafe_allow_html=True)
+                with log_container:
+                    st.info(f"🎉 **KESIMPULAN AKHIR:** Sampel ini terbukti sah merupakan golongan **{senyawa.upper()}**.")
+                
+                with col_visual:
+                    if st.button("🔄 Uji Golongan Senyawa Lain", use_container_width=True):
+                        st.session_state.test_started = False
+                        force_rerun()
